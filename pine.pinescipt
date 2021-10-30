@@ -1,0 +1,22 @@
+//@version=4
+study("My Script", overlay=true)
+
+EMA9 = ema(close, 9)
+EMA13 = ema(close, 13)
+EMA21 = ema(close, 21)
+EMA55 = ema(close, 55)
+EMA100 = ema(close, 100)
+EMA200 = ema(close, 200)
+
+
+plot(EMA9, color = #308a7c)
+plot(EMA13, color = #abc42d)
+plot(EMA21, color = color.blue)
+plot(EMA55, color = #36c7c9)
+plot(EMA100, color = #ba4e72)
+plot(EMA200, color = #38a146)
+
+alertcondition(condition=(cross(close, EMA200) or cross(close, EMA100)) , message="cross(close, EMA1-200)")
+
+bgcolor(color=cross(close, EMA200) ? color.red : na, transp=80)
+bgcolor(color=cross(close, EMA100) ? color.blue : na, transp=80)
